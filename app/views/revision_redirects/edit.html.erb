@@ -1,13 +1,36 @@
-<h2><%= l(:rrr_label_redirect) %></h2>
+<h2>Repository redirects</h2>
 
 <%= labelled_form_for :redirect, @redirect, :url => revision_redirect_path(@repository), :html => {:method => :put, :id => 'revision-redirect-form'} do |f| %>
 
-  <%= error_messages_for 'redirect' %>
-
   <div class="box tabular">
-    <p><%= f.check_box :revision_redirect, :label => :rrr_field_revision_redirect %></p>
-    <p><%= f.check_box :diff_redirect, :label => :rrr_field_diff_redirect %></p>
-    <p><%= f.check_box :repository_redirect, :label => :rrr_field_repository_redirect %></p>
+    <p>
+      <%= f.check_box :revision_redirect, :label => 'Revision redirect' %>
+    </p>
+    <p>
+      <%= f.text_field :revision_link, :label => 'Revision link', :size => 60 %>
+      <em class="info">
+        You can use <code>%REV%</code> and <code>%ID%</code> in your link.<br />
+        <code>%REV%</code> is current revision requested to get in diffstat.<br />
+        <code>%ID%</code> is project identifier given when project was creating.
+      </em>
+    </p>
+    <p>
+      <%= f.check_box :diff_redirect, :label => 'Diffstat redirect' %>
+    </p>
+    <p>
+      <%= f.text_field :diff_link, :label => 'Diffstat link', :size => 60 %>
+      <em class="info">
+        You can use <code>%DIFF%</code> and <code>%ID%</code> in your link.<br />
+        <code>%DIFF%</code> is current revision requested to get in diffstat.<br />
+        <code>%ID%</code> is project identifier given when project was creating.
+      </em>
+    </p>
+    <p>
+      <%= f.check_box :repository_redirect, :label => 'Repository redirect' %>
+    </p>
+    <p>
+      <%= f.text_field :repository_link, :label => 'Repository link', :size => 60 %>
+    </p>
   </div>
 
   <p>

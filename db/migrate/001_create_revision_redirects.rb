@@ -8,7 +8,6 @@ class CreateRevisionRedirects < ActiveRecord::Migration[5.2]
       t.string :diff_link
       t.string :repository_link
       t.integer :repository_id
-      t.boolean :commiter_email
     end
     add_index :revision_redirects, :repository_id
   end
