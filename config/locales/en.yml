@@ -1,4 +1,6 @@
-# English strings go here for Rails i18n
 en:
   rrr_button_redirect: "Redirects"
-  # my_label: "My label"
+  rrr_label_redirect: "Repository redirects"
+  rrr_field_revision_redirect: "Revision redirect"
+  rrr_field_diff_redirect: "Diff redirect"
+  rrr_field_repository_redirect: "Repository redirect"
