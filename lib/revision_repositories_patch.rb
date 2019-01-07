@@ -2,7 +2,7 @@ require_dependency 'repositories_controller'
 
 module RevisionRepositoriesPatch
   def self.included(base)
-    base.send(:include, InstanceMethods)
+    base.send(:include, RevisionRepositoriesInstanceMethods)
 
     base.class_eval do
       unloadable
@@ -11,7 +11,7 @@ module RevisionRepositoriesPatch
   end
 end
 
-module InstanceMethods
+module RevisionRepositoriesInstanceMethods
   def destroy_revision_redirects
     redirect = RevisionRedirect.where(repository_id: params[:id]).first
     redirect.destroy if request.delete?

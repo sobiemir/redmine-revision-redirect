@@ -11,4 +11,5 @@ end
 
 Rails.configuration.to_prepare do
   RepositoriesController.send(:include, RevisionRepositoriesPatch)
+  IssuesController.send(:include, RevisionIssuesPatch)
 end
