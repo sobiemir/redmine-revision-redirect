@@ -1,12 +1,11 @@
 class RevisionRedirectsController < ApplicationController
-  before_action :authorize
-  before_action :find_repository_details, :only => [:edit, :update]
+  before_action :find_repository_details, :authorize, :only => [:edit, :update]
 
   def edit
   end
 
   def update
-    if @redirect.new_record? then
+    if @redirect == nil || @redirect.new_record? then
       @redirect = RevisionRedirect.new(update_params)
       @redirect.repository_id = params[:id]
 

@@ -5,6 +5,8 @@ Redmine::Plugin.register :redmine_revision_redirect do
   version '0.0.1'
   url 'https://git.aculo.pl/redmine-revision-redirect'
   author_url 'https://aculo.pl'
+
+  permission :edit_revision_redirects, :revision_redirects => [:edit, :update]
 end
 
 Rails.configuration.to_prepare do
