@@ -14,11 +14,13 @@ end
 
 module RevisionRepositoriesInstanceMethods
   def destroy_revision_redirects
+    # deletes object of revision redirects table when repository is deleted
     redirect = RevisionRedirect.where(repository_id: params[:id]).first
     redirect.destroy if request.delete?
   end
 
   def repository_instant_redirect
+    # redirect to repository when user selected this option after clicking on repository tab
     redirect = RevisionRedirect.where(repository_id: @repository.id).first
     if redirect != nil && redirect.repository_redirect == true then
       redirect_to redirect.repository_link

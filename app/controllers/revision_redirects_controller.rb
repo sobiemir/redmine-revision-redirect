@@ -5,6 +5,7 @@ class RevisionRedirectsController < ApplicationController
   end
 
   def update
+    # check if object exists
     if @redirect == nil || @redirect.new_record? then
       @redirect = RevisionRedirect.new(update_params)
       @redirect.repository_id = params[:id]
@@ -28,9 +29,13 @@ class RevisionRedirectsController < ApplicationController
   private
 
   def find_repository_details
+    # find repository and redirect object
     @repository = Repository.find(params[:id])
     @redirect = RevisionRedirect.where(repository_id: params[:id]).first
     @project = @repository.project
+
+    # get user domain to emulate git path (by default cgit path)
+    user_domain = request.domain
 
     # if redirect cannot be found, create new with default values
     if not @redirect then
@@ -39,9 +44,9 @@ class RevisionRedirectsController < ApplicationController
         diff_redirect: false,
         repository_redirect: false,
         repository_id: params[:id],
-        revision_link: "https://git.example.com/#{@project.identifier}/commit/?id=\%REV\%",
-        diff_link: "https://git.example.com/#{@project.identifier}/diff/?id=\%DIFF\%",
-        repository_link: "https://git.example.com/#{@project.identifier}"
+        revision_link: "https://git.#{user_domain}/#{@project.identifier}/commit/?id=\%REV\%",
+        diff_link: "https://git.#{user_domain}/#{@project.identifier}/diff/?id=\%DIFF\%",
+        repository_link: "https://git.#{user_domain}/#{@project.identifier}"
       })
     end
   rescue ActiveRecord::RecordNotFound

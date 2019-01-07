@@ -13,6 +13,7 @@ end
 
 module RevisionIssuesInstanceMethods
   def get_revision_redirects
+    # this gets value and store it when it's requested by user
     @redirects = Hash.new do |hash, key|
       hash[key] = RevisionRedirect.where(repository_id: key).first
     end

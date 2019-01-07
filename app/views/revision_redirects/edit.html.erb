@@ -9,9 +9,8 @@
     <p>
       <%= f.text_field :revision_link, :label => 'Revision link', :size => 60 %>
       <em class="info">
-        You can use <code>%REV%</code> and <code>%ID%</code> in your link.<br />
-        <code>%REV%</code> is current revision requested to get in diffstat.<br />
-        <code>%ID%</code> is project identifier given when project was creating.
+        You can use <code>%REV%</code> in your link.<br />
+        <code>%REV%</code> is current revision requested to get in diffstat.
       </em>
     </p>
     <p>
@@ -20,9 +19,8 @@
     <p>
       <%= f.text_field :diff_link, :label => 'Diffstat link', :size => 60 %>
       <em class="info">
-        You can use <code>%DIFF%</code> and <code>%ID%</code> in your link.<br />
+        You can use <code>%DIFF%</code> in your link.<br />
         <code>%DIFF%</code> is current revision requested to get in diffstat.<br />
-        <code>%ID%</code> is project identifier given when project was creating.
       </em>
     </p>
     <p>
@@ -32,10 +30,8 @@
       <%= f.text_field :repository_link, :label => 'Repository link', :size => 60 %>
     </p>
   </div>
-
   <p>
     <%= submit_tag(@redirect.new_record? ? l(:button_create) : l(:button_save)) %>
     <%= link_to l(:button_cancel), settings_project_path(@project, :tab => 'repositories') %>
   </p>
-
 <% end %>
