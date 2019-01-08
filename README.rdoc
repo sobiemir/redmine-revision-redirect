@@ -1,3 +1,0 @@
-= redmine_revision_redirect
-
-Description goes here
